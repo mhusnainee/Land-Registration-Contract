@@ -382,14 +382,14 @@ contract Project
 
         if (msg.value > Lands[_landId].LandPrice*1000000000000000000)
         {
-            msg.sender.transfer(address(this).balance);
+            payable(msg.sender).transfer(address(this).balance);
             emit buyingLand("Land not bought, sent more Ethers than Land price",
             _landId, Lands[_landId].LandPrice, landOwnerMapping[_landId], msg.sender);
         }
 
         else if (msg.value < Lands[_landId].LandPrice*1000000000000000000)
         {
-            msg.sender.transfer(address(this).balance);
+            payable(msg.sender).transfer(address(this).balance);
             emit buyingLand("Land not bought, sent less Ethers than Land price",
             _landId, Lands[_landId].LandPrice, landOwnerMapping[_landId], msg.sender);
         }
